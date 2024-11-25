@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <header>
+      <h1 class="iconme">
+          <img class="icon" src="Untitled-2.png" alt="webicon">
+          <p id="ti">웰빙이 삶이 되는</p> <p id="TITLE"> '헬스타'</p> 
+      </h1>
+  </header>
+
+  <nav>
+      <ul>
+          <li><a href="Main.html" id="main">Main</a></li>
+          <li><a href="profile.html" id="profile">Profile</a></li>
+          <li><a href="Commu.html" id="Community">Community</a></li>
+          <li><a href="mission.html" id="Settings">Settings</a></li>
+      </ul>   
+  </nav>
+
+  <main>
+      <div class="profile-container">
+          <div class="profile-image">
+              <img id="profile-photo-preview" alt ="photo">
+              <input type="file" id="upload-photo" accept="image/*">
+          </div>
+          <div class="profile-info">
+              <label for="username">Name:</label>
+              <input type="text" id="username" placeholder="Enter your name">
+              <label for="bio">Bio:</label>
+              <input type="text" id="bio" placeholder="Enter a short bio">
+              <label for="email">Email:</label>
+              <input type="email" id="email" placeholder="Enter your email">
+          </div>
+          <button class="edit-profile">Save Profile</button>
+      </div>
+  </main>
+
+  <footer class="footer">
+      <p>© 2024 헬스케어 커뮤니티</p>
+  </footer>
+
+  <script src="d:\헬스케어-js\profile.js"></script> <!-- 자바스크립트 파일 연결 -->
+</body>
+</html>

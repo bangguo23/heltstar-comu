@@ -1,0 +1,267 @@
+/* 기존 CSS 코드 유지 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #99cc00;
+    color: white;
+}
+
+header .iconme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+header #ti {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+header #TITLE {
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+nav {
+    background-color: #0066cc;
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #004d99;
+    border-radius: 5px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.home-section, .quiz-section, .recommendation-section {
+    background-color: #ffffff;
+    padding: 2rem;
+    text-align: center;
+    width: 80%;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+    display: block;
+    margin: 10px;
+}
+
+.egg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.egg img {
+    max-width: 100%;
+    height: auto;
+}
+
+.start-quiz-btn, .option-btn {
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.start-quiz-btn:hover, .option-btn:hover {
+    background-color: #45a049;
+}
+
+.footer {
+    background-color: #0066cc;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    margin-top: auto;
+}
+
+/* 추가된 CSS 코드 */
+.quiz-section {
+    margin-top: 0 !important; /* 퀴즈 섹션을 화면 상단에 배치 */
+    position: absolute;
+    top: 20%; /* 상단에서 간격 조정 */
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    margin: 10px;
+}
+
+/* 추천 결과 스타일링 */
+.recommendation-section {
+    background: linear-gradient(145deg, #d1e7ff, #99ccff);
+    padding: 3rem;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.recommendation-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-card h3 {
+    font-size: 1.5rem;
+    color: #0066cc;
+    margin-bottom: 1rem;
+}
+
+.recommendation-card p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.home-section, .quiz-section, .recommendation-section {
+    width: 90%;
+    max-width: 700px;
+    margin: 1rem 0;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+/* 초기 상태에서 퀴즈 섹션과 추천 섹션을 숨김 */
+.quiz-section, .recommendation-section {
+    display: none;
+}
+
+.recommendation-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* .footer-add 수정 */
+.footer-add {
+    position: absolute; /* 오른쪽에 고정 */
+    bottom: 10px; /* 페이지 하단에 위치 */
+    right: 10px; /* 오른쪽 끝에 위치 */
+    width: 300px; /* 동영상 광고 크기 */
+    height: 150px; /* 동영상 광고 크기 */
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 다른 요소들 위에 표시되도록 */
+}
+
+/* 동영상 크기 조정 */
+.footer-add video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 닫기 버튼 위치 조정 */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* .egg 이미지 섹션 오른쪽 정렬 */
+.egg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.egg img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* .footer-add와 .egg가 겹치지 않도록 padding 조정 */
+main {
+    padding-bottom: 200px; /* 동영상 광고와 겹치지 않도록 공간 확보 */
+}

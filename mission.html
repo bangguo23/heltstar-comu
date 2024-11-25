@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Community</title>
+    <link rel="stylesheet" href="mission.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1 class="iconme">
+            <img class="icon" src="Untitled-2.png" alt="webicon">
+            <p id="ti">웰빙이 삶이 되는</p> <p id="TITLE"> '헬스타'</p> 
+        </h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Main.html" id="main">Main</a></li>
+            <li><a href="profile.html" id="profile">Profile</a></li>
+            <li><a href="Commu.html" id="Community">Community</a></li>
+            <li><a href="mission.html" id="Settings">Settings</a></li>
+        </ul>   
+    </nav>
+    
+    <!-- Main content -->   
+    <main>
+        <!-- Home Page Section -->
+        <section class="home-section">
+            <h2>헬스타에 오신 것을 환영합니다!</h2>
+            <p>헬스타를 이용하기 전, 간단한 질문으로 사용자에 맞는 운동과 식단을 추천하고 있어요.</p>
+            <button class="start-quiz-btn" onclick="startQuiz()">Start Health Quiz</button>
+        </section>
+
+        <!-- 이미지 섹션 복원 -->
+        <span class="egg">
+            <img src="단락 텍스트.png" alt="웰빙 이미지">
+        </span>
+
+        <!-- Quiz Section -->
+        <section class="quiz-section hidden" id="quiz-section">
+            <h2>Health Quiz</h2>
+            <div id="quiz-container">
+                <!-- 퀴즈 질문과 답변이 여기에 동적으로 추가됩니다 -->
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section class="recommendation-section hidden" id="recommendation-section">
+            <h2>Your Personalized Recommendations</h2>
+            <div id="recommendation-content">
+                <!-- 맞춤형 운동 추천 내용이 여기에 표시됩니다 -->
+            </div>
+        </section>
+    </main>
+
+     <!-- 하단 광고 동영상 -->
+     <div class="footer-add" id="footerAdd">
+        <video autoplay muted loop>
+            <source src="d:\제목 없는 디자인 (1).mp4" type="video/mp4">
+            <p>동영상을 재생할 수 없습니다. 브라우저를 업데이트하거나 <a href="ad.mp4">여기를 클릭</a>하여 동영상을 다운로드하세요.</p>
+        </video>
+        <button class="close-btn" onclick="closeAd()">×</button>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 헬스케어 커뮤니티</p>
+    </footer>
+
+    <script>
+        let currentQuestionIndex = 0;
+        const userAnswers = [];
+        
+        const questions = [
+            { question: '본인의 운동 목표는 무엇인가요?', options: ['다이어트', '근육 증가', '체력 증가', '유연성 향상'] },
+            { question: '운동을 얼마나 자주 하시나요?', options: ['주 1-2회', '주 3-4회', '주 5회 이상', '거의 하지 않음'] },
+            { question: '운동을 어떤 방식으로 하기 원하나요?', options: ['혼자', '사람들과 함께', '온라인으로', '트레이너와 함께'] },
+            { question: '운동을 할 때 선호하는 강도는 무엇인가요?', options: ['저강도', '중강도', '고강도'] },
+            { question: '운동을 할 때 선호하는 운동 시간은 얼마나 되나요?', options: ['30분 이하', '1시간', '1시간 이상'] },
+            { question: '운동 후 회복을 위해 어떤 활동을 선호하시나요?', options: ['스트레칭', '마사지', '휴식', '운동 후 바로 식사'] },
+            { question: '운동을 할 때 어떤 장비를 선호하시나요?', options: ['기구', '자유 웨이트', '바디웨이트', '기타'] },
+
+            { question: '평소에 어떤 종류의 음식을 주로 드시나요?', options: ['육류 중심', '채소 중심', '탄수화물 중심', '균형 잡힌 식사'] },
+            { question: '아침을 드시나요?', options: ['항상', '가끔', '거의 안 먹음', '절대 안 먹음'] },
+            { question: '식사 중 가장 중요하게 생각하는 것은 무엇인가요?', options: ['영양가', '맛', '간편함', '가격'] },
+            { question: '음식을 고를 때 가장 중요하게 생각하는 것은 무엇인가요?', options: ['칼로리', '단백질', '탄수화물', '지방'] },
+            { question: '식사를 자주 거르시나요?', options: ['항상', '가끔', '거의 안 함', '전혀 안 함'] },
+            { question: '다이어트를 하거나 체중을 관리할 때 중요한 점은 무엇인가요?', options: ['칼로리 계산', '균형 잡힌 식사', '간헐적 단식', '지속적인 운동'] },
+            { question: '음식에 대해 알레르기가 있나요?', options: ['없음', '유제품', '글루텐', '기타'] }
+        ];
+
+        function startQuiz() {
+            document.querySelector('.home-section').style.display = 'none';
+            document.querySelector('.egg').style.display = 'none';  // 이미지 숨기기
+            document.querySelector('.quiz-section').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const quizContainer = document.getElementById('quiz-container');
+            
+            if (currentQuestionIndex < questions.length) {
+                quizContainer.innerHTML = ` 
+                    <p>${questions[currentQuestionIndex].question}</p>
+                    ${questions[currentQuestionIndex].options.map((option, index) => ` 
+                        <button class="option-btn" onclick="handleAnswer(${index})">${option}</button>
+                    `).join('')}
+                `;
+            } else {
+                quizContainer.innerHTML = ` 
+                    <p>질문이 끝났습니다, 잠시만 기다려 주세요</p>
+                `;
+                setTimeout(() => {
+                    document.querySelector('.quiz-section').style.display = 'none';
+                    document.querySelector('.recommendation-section').style.display = 'block';
+                    showRecommendations();
+                }, 2000); // 2초 후 결과 화면으로 전환
+            }
+        }
+
+        function handleAnswer(optionIndex) {
+            userAnswers.push(questions[currentQuestionIndex].options[optionIndex]);
+            currentQuestionIndex++;
+            showQuestion();
+        }
+
+        function showRecommendations() {
+            const recommendationContent = document.getElementById('recommendation-content');
+            const exerciseRecommendations = generateExerciseRecommendations(userAnswers);
+            const dietRecommendations = generateDietRecommendations(userAnswers);
+
+            recommendationContent.innerHTML = `
+                <div class="recommendation-card">
+                    <h3>운동 추천</h3>
+                    <p>${exerciseRecommendations.join(', ')}</p>
+                </div>
+                <div class="recommendation-card">
+                    <h3>식단 추천</h3>
+                    <p>${dietRecommendations.join(', ')}</p>
+                </div>
+            `;
+        }
+
+        function generateExerciseRecommendations(answers) {
+            const recommendations = [];
+
+            if (answers.includes('다이어트')) {
+                recommendations.push('유산소 운동', '고강도 인터벌 트레이닝 (HIIT)', '요가', '필라테스', '빠른 걷기');
+            }
+
+            if (answers.includes('근육 증가')) {
+                recommendations.push('웨이트 트레이닝', '크로스핏', '킥복싱', '줄넘기', '수영');
+            }
+
+            if (answers.includes('체력 증가')) {
+                recommendations.push('런닝', '자전거 타기', '등산', '수영', '크로스핏');
+            }
+
+            if (answers.includes('유연성 향상')) {
+                recommendations.push('요가', '필라테스', '스트레칭', '태극권', '명상');
+            }
+
+            return recommendations.slice(0, 5);
+        }
+
+        function generateDietRecommendations(answers) {
+            const recommendations = [];
+
+            if (answers.includes('육류 중심')) {
+                recommendations.push('고단백 식사', '저탄수화물 다이어트', '닭가슴살', '소고기', '연어');
+            }
+
+            if (answers.includes('채소 중심')) {
+                recommendations.push('채소와 과일 위주 식단', '비타민과 미네랄이 풍부한 식단', '그린 스무디', '식이섬유가 풍부한 식사');
+            }
+
+            if (answers.includes('탄수화물 중심')) {
+                recommendations.push('고탄수화물 식사', '빵, 쌀, 파스타 중심 식사', '탄수화물 적당히 섭취하기');
+            }
+
+            if (answers.includes('균형 잡힌 식사')) {
+                recommendations.push('단백질, 탄수화물, 지방 비율 조절', '다양한 음식을 섭취', '신선한 재료 사용');
+            }
+
+            return recommendations.slice(0, 5);
+        }
+
+        function closeAd() {
+            document.getElementById('footerAdd').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

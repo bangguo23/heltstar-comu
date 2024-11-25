@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헬스케어 커뮤니티</title>
+    <link rel="stylesheet" href="Commu.css">
+</head>
+<body>
+  <header class="header">
+      <h1 class="iconme">
+          <img class="icon" src="Untitled-2.png" alt="webicon">
+          <p id="ti">웰빙이 삶이 되는</p> <p id="TITLE"> '헬스타'</p> 
+      </h1>
+  </header>
+
+  <nav>
+      <ul>
+          <li><a href="Main.html" id="main">Main</a></li>
+          <li><a href="profile.html" id="profile">Profile</a></li>
+          <li><a href="Commu.html" id="Community">Community</a></li>
+          <li><a href="mission.html" id="Settings">Settings</a></li>
+      </ul>   
+  </nav>
+
+  <main class="content">
+    <section class="post-container" id="post-container">
+      <!-- 여기에 사용자 게시물 표시 -->
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2024 헬스케어 커뮤니티</p>
+  </footer>
+
+  <script>
+      // 로컬 스토리지에서 게시물 불러오기
+      function loadPosts() {
+          const posts = JSON.parse(localStorage.getItem('posts')) || [];
+          const postContainer = document.getElementById('post-container');
+          postContainer.innerHTML = ''; // 초기화
+
+          posts.forEach((post, index) => {
+              const postElement = document.createElement('article');
+              postElement.className = 'post';
+
+              const postHeader = `
+                  <div class="post-header">
+                      <img src="user-icon.png" alt="${post.author}" class="user-image">
+                      <h2 class="post-title">${post.author}의 하루</h2>
+                  </div>
+              `;
+              
+              const postImage = post.imageUrl ? `<img src="${post.imageUrl}" alt="게시물 이미지" class="post-image">` : '';
+              
+              const postContent = `
+                  ${postHeader}
+                  ${postImage}
+                  <p class="post-content">${post.content}</p>
+                  <span class="post-author">작성자: ${post.author}</span>
+                  <div class="post-footer">
+                      <button class="like-button" onclick="likePost(${index})">❤️ <span id="like-count-${index}">${post.likes || 0}</span></button>
+                      <span class="comments">💬 <span id="comment-count-${index}">${post.comments ? post.comments.length : 0}</span></span>
+                  </div>
+                  <div class="comment-section" id="comment-section-${index}">
+                      <input type="text" placeholder="별명" id="nickname-input-${index}">
+                      <input type="text" placeholder="댓글을 입력하세요..." id="comment-input-${index}">
+                      <button onclick="addComment(${index})">댓글 달기</button>
+                      <div class="comments-list" id="comments-list-${index}">
+                          ${post.comments ? post.comments.map(comment => `<p><strong>${comment.nickname}:</strong> ${comment.text}</p>`).join('') : ''}
+                      </div>
+                  </div>
+              `;
+              
+              postElement.innerHTML = postContent;
+              postContainer.appendChild(postElement);
+          });
+      }
+
+      // 좋아요 기능
+      function likePost(index) {
+          const posts = JSON.parse(localStorage.getItem('posts')) || [];
+          posts[index].likes = (posts[index].likes || 0) + 1;
+          localStorage.setItem('posts', JSON.stringify(posts));
+          document.getElementById(`like-count-${index}`).innerText = posts[index].likes;
+      }
+
+      // 댓글 추가 기능
+      function addComment(index) {
+          const nicknameInput = document.getElementById(`nickname-input-${index}`);
+          const commentInput = document.getElementById(`comment-input-${index}`);
+          const nickname = nicknameInput.value.trim();
+          const commentText = commentInput.value.trim();
+          if (nickname === '' || commentText === '') return;
+
+          const posts = JSON.parse(localStorage.getItem('posts')) || [];
+          posts[index].comments = posts[index].comments || [];
+          posts[index].comments.push({ nickname, text: commentText });
+          localStorage.setItem('posts', JSON.stringify(posts));
+
+          const commentsList = document.getElementById(`comments-list-${index}`);
+          commentsList.innerHTML += `<p><strong>${nickname}:</strong> ${commentText}</p>`;
+          nicknameInput.value = '';
+          commentInput.value = '';
+
+          // 댓글 수 업데이트
+          const commentCount = document.getElementById(`comment-count-${index}`);
+          commentCount.innerText = posts[index].comments.length;
+      }
+
+      // 페이지 로드시 게시물 로드
+      document.addEventListener('DOMContentLoaded', loadPosts);
+  </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and basic styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f0f8ff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #99cc00; /* 연두색 배경 */
+    color: white;
+}
+
+header .iconme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+header #ti {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+header #TITLE {
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* Navigation Styling */
+nav {
+    background-color: #0066cc; /* 포인트 색상 파란색 */
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #004d99;
+    border-radius: 5px;
+}
+
+/* Main Content Layout */
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    margin: 20px;
+}
+
+.video-container {
+    flex: 1;
+    max-width: 600px;
+}
+
+.video-bear {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);  
+}
+
+.blog-container {
+    flex: 2;
+    max-width: 1000px;
+}
+
+.blog-input {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.blog-input h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+.blog-input p {
+    text-align: center;
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+#blog-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#blog-content {
+    width: 80%;
+    height: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #bdc3c7;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pile {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#post {
+    background-color: #99cc00;  
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#post:hover {
+    background-color: #27ae60;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #0066cc;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+/* Footer Advertisement */
+.footer-ad {
+    position: fixed;
+    bottom: 80px;
+    width: 700px;
+    height: 250px; /* 광고 높이 제한 */
+    overflow: hidden; /* 광고 크기를 벗어난 내용 숨김 */
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 1000;
+    right: 300px;
+}
+
+
+.footer-ad video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.footer-ad .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.footer-ad .close-btn:hover {
+    background-color: darkred;
+}
+

@@ -1,0 +1,165 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body and basic styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  background-color: #f0f8ff;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: #99cc00; /* 연두색 배경 */
+  color: white;
+}
+
+header .iconme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header .icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+header #ti {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+header #TITLE {
+  font-size: 26px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+/* Navigation Styling */
+nav {
+  background-color: #0066cc; /* 포인트 색상 파란색 */
+  padding: 10px 0;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #004d99;
+  border-radius: 5px;
+}
+
+/* Profile Container Styling */
+.profile-container {  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: #e0f7e4; /* 연두색 배경 */
+  border-radius: 10px;
+  width: 700px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+/* Profile Image Styling */
+.profile-image {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 3px solid #76c7c0; /* 파란색 테두리 */
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Photo Upload Button */
+#upload-photo {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Profile Information Styling */
+.profile-info {
+  text-align: center;
+  color: #2a2a2a;
+}
+
+.profile-info label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.profile-info input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #bdc3c7;
+}
+
+/* Edit Profile Button */
+.edit-profile {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #76c7c0; /* 파란색 버튼 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-profile:hover {
+  background-color: #5aafb0; /* 살짝 어두운 파란색 */
+}
+
+/* Footer Styling */
+.footer {
+  background-color: #0066cc;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>헬스케어 커뮤니티</title>
+  <style>
+    /* 전체 스타일 */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    /* 비디오 배경 */
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* 배경이 다른 콘텐츠 아래로 가도록 설정 */
+    }
+
+    /* 콘텐츠 영역 */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    p {
+      font-size: 1.5em;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease-out;
+    }
+
+    /* 링크 스타일 */
+    .link {
+      font-size: 1.2em;
+      color: #fff;
+      text-decoration: none;
+      margin-top: 20px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease-out;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+    .link:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+  <!-- 배경 영상 -->
+  <video class="video-background" autoplay muted loop>
+    <source src="invideo-ai-1080 Discover the Healing Power of Nature_ Fo 2024-11-12.mp4" type="video/mp4">
+    <!-- 여기에 사용할 폭포 영상 파일 경로를 넣어주세요 -->
+    <p>비디오를 지원하지 않는 브라우저입니다.</p>
+  </video>
+
+  <!-- 콘텐츠 -->
+  <section class="hero">
+    <div>
+      <h1>자연처럼 건강하게, 함께 나아가는 커뮤니티</h1>
+      <p>저희 헬스타 커뮤니티 속에서 건강한 삶을 함께 만들어가요.</p>
+      <!-- 5초 후 링크 표시 -->
+      <a href="profile.html" class="link">홈페이지 바로가기</a> <!-- 링크 URL을 원하시는 페이지로 수정하세요 -->
+    </div>
+  </section>
+
+  <!-- GSAP CDN 추가 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  
+  <script>
+    // 페이지 로딩 시 애니메이션
+    gsap.to("h1", { duration: 1.5, opacity: 1, y: 0 });
+    gsap.to("p", { duration: 1.5, opacity: 1, y: 0, delay: 1 });  // 1초 지연 후 p 요소 등장
+
+    // 5초 후에 "홈페이지 바로가기" 링크 나타나게 하기
+    gsap.to(".link", { duration: 1.5, opacity: 1, y: 0, delay: 5 });  // 5초 후 애니메이션 시작
+  </script>
+</body>
+</html>

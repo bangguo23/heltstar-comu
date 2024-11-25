@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>    
+        <h1 class="iconme">
+            <img class="icon" src="Untitled-2.png" alt="webicon">
+            <p id="ti">웰빙이 삶이 되는</p> <p id="TITLE"> '헬스타'</p> 
+        </h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="profile.html" id="profile">Profile</a></li>
+            <li><a href="Commu.html" id="Community">Community</a></li>
+            <li><a href="mission.html" id="Settings">Settings</a></li>
+        </ul>   
+    </nav>
+
+    <main>
+        <div class="main-content">
+            <section class="video-container">
+                <video class="video-bear" autoplay muted loop>
+                    <source src="d:\단락 텍스트 (1).mp4" type="video/mp4">
+                    <p>비디오를 지원하지 않는 브라우저입니다.</p>
+                </video>
+            </section>
+        
+            <section class="blog-container">
+                <section class="blog-input">
+                    <h2>Today's Summary</h2>
+                    <p>당신의 하루를 기록해 보아요 !!</p>
+                    <h2>My Daily Blog</h2>
+                    <form id="blog-form">
+                        <textarea id="blog-content" placeholder="일상을 자유롭게..."></textarea>
+                        <div class="pile">
+                            <input type="file" id="blog-image" accept="image/*">
+                            <button type="button" id="post" onclick="submitPost()">글 올리기</button>
+                        </div>
+                    </form>
+                    <div id="blog-entries">
+                        <!-- User posts will appear here -->
+                    </div>
+                </section>
+            </section>
+        </div>
+    
+        <!-- 하단 광고 동영상 -->
+        <div class="footer-ad" id="footerAd">
+            <video autoplay muted loop>
+                <source src="d:\제목 없는 디자인.mp4" type="video/mp4">
+                <p>동영상을 재생할 수 없습니다. 브라우저를 업데이트하거나 <a href="ad.mp4">여기를 클릭</a>하여 동영상을 다운로드하세요.</p>
+            </video>
+            <button class="close-btn" onclick="closeAd()">×</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 헬스케어 커뮤니티</p>
+    </footer>
+
+    <script>
+        // 게시글 작성 함수
+        function submitPost() {
+            const content = document.getElementById('blog-content').value;
+            const imageInput = document.getElementById('blog-image');
+            let imageUrl = '';
+
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imageUrl = e.target.result;
+                    savePost(content, imageUrl);
+                };
+                reader.readAsDataURL(imageInput.files[0]);
+            } else {
+                savePost(content, imageUrl);
+            }
+
+            document.getElementById('blog-form').reset();
+            alert("게시글이 커뮤니티에 업로드되었습니다.");
+        }
+
+        // 게시글 저장 함수
+        function savePost(content, imageUrl) {
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            const newPost = { content, imageUrl, author: '사용자' + (posts.length + 1) };
+            posts.push(newPost);
+            localStorage.setItem('posts', JSON.stringify(posts));
+        }
+
+        // 광고 동영상 닫기 함수
+        function closeAd() {
+            // 광고 동영상을 포함한 div 요소를 숨깁니다.
+            document.getElementById('footerAd').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
